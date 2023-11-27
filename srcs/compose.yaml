@@ -1,0 +1,16 @@
+services:
+
+  nginx:
+    build: nginx/
+    ports:
+      - 443
+
+  wordpress:
+    build: wordpress/
+    volumes: 
+      - /home/dtome-pe/data/wordpress_files
+
+  mariadb:
+    build: mariadb/
+    volumes: 
+      - /home/dtome-pe/data/database
