@@ -4,7 +4,7 @@ services:
     image: "nginx"
     build: nginx/
     ports:
-      - "442:442"
+      - "127.0.0.1:443:443"
     extra_hosts:
       - "dtome-pe.42.fr:127.0.0.1"
 
