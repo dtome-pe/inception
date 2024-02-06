@@ -1,16 +1,19 @@
 services:
 
   nginx:
+    image: "nginx"
     build: nginx/
     ports:
-      - 443
+      - "442:442"
+    extra_hosts:
+      - "dtome-pe.42.fr:127.0.0.1"
 
-  wordpress:
-    build: wordpress/
-    volumes: 
-      - /home/dtome-pe/data/wordpress_files
+ # wordpress:
+  #  build: wordpress/
+   # volumes: 
+    #  - /home/dtome-pe/data/wordpress_files
 
-  mariadb:
-    build: mariadb/
-    volumes: 
-      - /home/dtome-pe/data/database
+ # mariadb:
+  #  build: mariadb/
+   # volumes: 
+    #  - /home/dtome-pe/data/database
