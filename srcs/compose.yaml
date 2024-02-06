@@ -9,9 +9,10 @@ services:
       - "dtome-pe.42.fr:127.0.0.1"
 
  # wordpress:
-  #  build: wordpress/
-   # volumes: 
-    #  - /home/dtome-pe/data/wordpress_files
+  #  image: "wordpress"
+   # build: wordpress/
+    #volumes:
+     #  - /home/dtome-pe/data_folder
 
  # mariadb:
   #  build: mariadb/
