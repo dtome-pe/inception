@@ -6,6 +6,16 @@ services:
       - "127.0.0.1:443:443"
     extra_hosts:
       - "dtome-pe.42.fr:127.0.0.1"
+    volumes:
+      - home/dtome-pe/data/web:/home/dtome-pe/data/web
+    
+#volumes:
+ # web_data:
+  #  driver: local
+   # driver_opts:
+    #  type: none
+     # o: bind
+      #device: /home/dtome-pe/data/web
 
  # wordpress:
   #  image: "wordpress"
