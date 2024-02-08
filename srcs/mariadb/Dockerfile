@@ -4,4 +4,4 @@ RUN apt-get update
 RUN apt-get install mariadb-server -y
 RUN apt-get install man -y
 RUN apt-get install sudo -y
-RUN sudo service mariadb start
+RUN service mariadb start

@@ -9,11 +9,11 @@ services:
     volumes:
       - /home/dtome-pe/data/web:/home/dtome-pe/data/web
 
-  #wordpress: 
-   # image: "web"
-    #build: wordpress/
-    #volumes:
-     # - /home/dtome-pe/data/web:/home/dtome-pe/data/web
+  wordpress: 
+    image: "web"
+    build: wordpress/
+    volumes:
+     - /home/dtome-pe/data/web:/home/dtome-pe/data/web
 
  # mariadb:/home/dtome-pe/data/web
   #  build: mariadb/
