@@ -4,3 +4,4 @@ RUN apt-get install sudo -y
 RUN apt-get install wordpress -y
 RUN apt-get install php-fpm -y
 EXPOSE 9000
+EXPOSE 3306

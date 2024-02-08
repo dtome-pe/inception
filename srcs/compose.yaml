@@ -7,7 +7,7 @@ services:
     extra_hosts:
       - "dtome-pe.42.fr:127.0.0.1"
     volumes:
-      - /home/dtome-pe/data/web:/home/dtome-pe/data/web
+      - web_vol:/home/dtome-pe/data/web
 
   #wordpress: 
    # image: "web"
@@ -16,12 +16,27 @@ services:
      #- /home/dtome-pe/data/web:/home/dtome-pe/data/web
 
   mariadb:
+    image: "db"
     build: mariadb/
-    volumes: 
-    - /home/dtome-pe/data/db:/home/dtome-pe/data/db
+    #volumes: 
+    #- /home/dtome-pe/data/db:/var/lib/mysql/
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+
+volumes:
+  web_vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dtome-pe/data/web
+  db_vol:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dtome-pe/data/db
     
