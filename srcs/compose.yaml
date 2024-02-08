@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: "nginx"
+    image: "server"
     build: nginx/
     ports:
       - "127.0.0.1:443:443"
@@ -9,13 +9,13 @@ services:
     volumes:
       - /home/dtome-pe/data/web:/home/dtome-pe/data/web
 
- # wordpress:
-  #  image: "wordpress"
-   # build: wordpress/
+  #wordpress: 
+   # image: "web"
+    #build: wordpress/
     #volumes:
-     #  - /home/dtome-pe/data_folder
+     # - /home/dtome-pe/data/web:/home/dtome-pe/data/web
 
- # mariadb:
+ # mariadb:/home/dtome-pe/data/web
   #  build: mariadb/
    # volumes: 
     #  - /home/dtome-pe/data/database
