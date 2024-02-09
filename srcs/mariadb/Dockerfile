@@ -1,13 +1,18 @@
 FROM debian:bullseye
 
 RUN apt update
-RUN curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | bash
-RUN apt-get install mariadb-server mariadb-client -y
-RUN apt-get install sudo
-RUN apt-get install systemctl -y
+RUN apt upgrade
+RUN apt install systemctl -y
+RUN apt install aptitude -y
+RUN apt install -y software-properties-common
+RUN apt install gnupg -y
+RUN apt install curl -y
+RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+RUN apt update
+RUN apt upgrade
+RUN apt install mariadb-server -y
 EXPOSE 3306
-RUN sudo service mariadb start
-RUN sudo chown -R mysql:mysql /var/lib/mysql
-RUN sudo chmod -R 755 /var/lib/mysql
 
-CMD ["mysqld"]
+ENTRYPOINT ["/bin/bash"]
+CMD ["service", "mariadb", "start"]
+

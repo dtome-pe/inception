@@ -1,30 +1,45 @@
 services:
   nginx:
-    image: "server"
+    image: server
+    container_name: server
     build: nginx/
     ports:
       - "127.0.0.1:443:443"
+      - "9000"
     extra_hosts:
       - "dtome-pe.42.fr:127.0.0.1"
     volumes:
       - web_vol:/home/dtome-pe/data/web
+    networks:
+      - inception
 
-  #wordpress: 
-   # image: "web"
-    #build: wordpress/
-    #volumes:
-     #- /home/dtome-pe/data/web:/home/dtome-pe/data/web
+  wordpress: 
+    image: web
+    container_name: web
+    build: wordpress/
+    ports:
+      - "9000"
+      - "3306"
+    volumes:
+     - web_vol:/home/dtome-pe/data/web
+    networks:
+      - inception
 
   mariadb:
-    image: "db"
+    image: db
+    container_name: db
     build: mariadb/
-    #volumes: 
-    #- /home/dtome-pe/data/db:/var/lib/mysql/
+    ports:
+      - "9000"
+    volumes: 
+    - db_vol:/var/lib/mysql/
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+    networks:
+      - inception
 
 volumes:
   web_vol:
@@ -39,4 +54,8 @@ volumes:
       type: none
       o: bind
       device: /home/dtome-pe/data/db
+
+networks:
+  inception:
+    driver: bridge
     

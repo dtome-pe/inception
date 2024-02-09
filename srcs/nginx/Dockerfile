@@ -10,4 +10,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY self-signed.conf /etc/nginx/snippets/self-signed.conf
 COPY ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 EXPOSE 443
+EXPOSE 9000
 CMD ["nginx", "-g", "daemon off;"]
