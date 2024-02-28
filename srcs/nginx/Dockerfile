@@ -2,13 +2,12 @@ FROM debian:bullseye
 
 RUN	apt-get update
 RUN apt-get install nginx -y
+RUN mkdir -p /etc/nginx/ssl
 RUN apt-get install openssl -y
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=SP/ST=Cat/L=BCN/O=42/OU=Cluster a/CN=dtome-pe.42.fr"
-RUN openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-RUN unlink /etc/nginx/sites-enabled/default
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=login.42.fr/UID=login"
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY self-signed.conf /etc/nginx/snippets/self-signed.conf
-COPY ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 EXPOSE 443
 EXPOSE 9000
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mysqld
+#admin
+mysql -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
+mysql -e CREATE USER \`${MYSQL_ADMIN}\`@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+#user
+mysql -e "GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO \`${MYSQL_ADMIN}\`@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
+mysql -e "CREATE USER IF NOT EXISTS \`${SQL_USER}\`@'localhost' IDENTIFIED BY '${SQL_PASSWORD}';"
+
+mysql -e FLUSH PRIVILEGES
+

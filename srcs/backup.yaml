@@ -9,25 +9,19 @@ services:
     extra_hosts:
       - "dtome-pe.42.fr:127.0.0.1"
     volumes:
-      - web_vol:/var/www/html
+      - web_vol:/home/dtome-pe/data/web
     networks:
       - inception
 
-  mariadb:
-    image: db
-    container_name: db
-    build: mariadb/
+  wordpress: 
+    image: web
+    container_name: web
+    build: wordpress/
     ports:
+      - "9000"
       - "3306"
-    volumes: 
-    - db_vol:/var/lib/mysql/
-    env_file: .env
-    environment:
-      MYSQL_ADMIN: ${MYSQL_ADMIN}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+     - web_vol:/home/dtome-pe/data/web
     networks:
       - inception
 
@@ -48,5 +42,4 @@ volumes:
 networks:
   inception:
     driver: bridge
-  
     
