@@ -13,17 +13,7 @@ services:
     networks:
       - inception
 
-  wordpress: 
-    image: web
-    container_name: web
-    build: wordpress/
-    ports:
-      - "9000"
-      - "3306"
-    volumes:
-     - web_vol:/home/dtome-pe/data/web
-    networks:
-      - inception
+
 
 volumes:
   web_vol:
