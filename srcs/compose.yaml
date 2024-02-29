@@ -3,7 +3,7 @@ services:
   nginx:
     image: server
     container_name: nginx
-    build: nginx/
+    build: requirements/nginx/
     ports:
       - "127.0.0.1:443:443"
       - "9000"
@@ -17,7 +17,7 @@ services:
   mariadb:
     image: db
     container_name: mariadb
-    build: mariadb/
+    build: requirements/mariadb/
     ports:
       - "3306"
     volumes: 
@@ -32,7 +32,7 @@ services:
         - mariadb
     image: web
     container_name: wordpress
-    build: wordpress/
+    build: requirements/wordpress/
     env_file: .env
     ports:
       - "9000"

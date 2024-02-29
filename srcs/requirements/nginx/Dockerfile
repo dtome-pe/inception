@@ -8,9 +8,8 @@ RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/ngin
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY common.conf /etc/nginx/conf.d/
-COPY wordpress.conf /etc/nginx/conf.d/
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/common.conf /etc/nginx/conf.d/
 
 EXPOSE 443
 EXPOSE 9000
