@@ -11,4 +11,4 @@ wordpress:
 	cd srcs/wordpress; docker build . -t wordpress; docker run -it wordpress bash
 
 clean:
-	cd srcs; docker-compose down -v; docker-compose rm
+	cd srcs; docker-compose down -v; docker-compose rm; sudo rm -rf /home/dtome-pe/data/web/*; sudo rm -rf /home/dtome-pe/data/db/*
