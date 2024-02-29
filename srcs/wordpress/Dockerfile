@@ -13,7 +13,15 @@ RUN apt install php-fpm -y\
 				sysvinit-utils -y
 
 
+RUN wget https://wordpress.org/latest.tar.gz -P /var/www
+RUN cd /var/www && tar -xzvf latest.tar.gz && rm latest.tar.gz
+RUN		chown -R root:root /var/www/wordpress
+
 RUN mkdir /run/php
+
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
 EXPOSE 3306
