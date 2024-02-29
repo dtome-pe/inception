@@ -13,8 +13,7 @@ services:
       - web_vol:/var/www/wordpress
     networks:
       - inception
-    restart: on-failure
-
+    restart: always
   mariadb:
     image: db
     container_name: mariadb
@@ -26,7 +25,7 @@ services:
     env_file: .env
     networks:
       - inception
-    restart: on-failure
+    restart: always
 
   wordpress:
     depends_on:
@@ -38,11 +37,13 @@ services:
     ports:
       - "9000"
       - "3306"
+    extra_hosts:
+      - "wordpress.srcs_inception:127.0.0.1"
     volumes:
      - web_vol:/var/www/wordpress
     networks:
       - inception
-    restart: on-failure
+    restart: always
 
 volumes:
   web_vol:

@@ -10,5 +10,5 @@ mariadb:
 wordpress:
 	cd srcs/wordpress; docker build . -t wordpress; docker run -it wordpress bash
 
-stop:
-	cd srcs; docker-compose down
+clean:
+	cd srcs; docker-compose down -v; docker-compose rm
