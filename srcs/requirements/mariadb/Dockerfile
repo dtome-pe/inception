@@ -12,5 +12,4 @@ COPY tools/db_configure.sh /home/
 
 EXPOSE 3306
 
-ENTRYPOINT ["/bin/bash", "-l", "-c"]
-CMD ["./home/db_configure.sh"]
+ENTRYPOINT ["./home/db_configure.sh"]
