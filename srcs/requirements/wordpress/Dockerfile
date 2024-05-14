@@ -23,13 +23,12 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-EXPOSE 9000
-EXPOSE 3306
-
 COPY conf/php.ini /etc/php/7.4/fpm/php.ini
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY conf/wp-config.php /
 
 COPY tools/wp_configure.sh /home/
+
+EXPOSE 9000
 
 CMD ["./home/wp_configure.sh"]

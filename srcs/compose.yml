@@ -1,14 +1,13 @@
 services:
   
   nginx:
+    depends_on:
+        - wordpress
     image: nginx
     container_name: nginx
     build: requirements/nginx/
     ports:
-      - "127.0.0.1:443:443"
-      - "9000"
-    extra_hosts:
-      - "dtome-pe.42.fr:127.0.0.1"
+      - "443:443"
     volumes:
       - web_vol:/var/www/wordpress
     networks:
@@ -18,8 +17,6 @@ services:
     image: mariadb
     container_name: mariadb
     build: requirements/mariadb/
-    ports:
-      - "3306"
     volumes: 
     - db_vol:/var/lib/mysql/
     env_file: .env
@@ -34,11 +31,6 @@ services:
     container_name: wordpress
     build: requirements/wordpress/
     env_file: .env
-    ports:
-      - "9000"
-      - "3306"
-    extra_hosts:
-      - "wordpress.srcs_inception:127.0.0.1"
     volumes:
      - web_vol:/var/www/wordpress
     networks:
@@ -61,6 +53,5 @@ volumes:
 
 networks:
   inception:
+    name: inception
     driver: bridge
-  
-    

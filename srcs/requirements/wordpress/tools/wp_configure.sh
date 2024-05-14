@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sleep 10
-
 cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 sed -i "s/database_name_here/$MYSQL_DATABASE/g" /var/www/wordpress/wp-config.php
 sed -i "s/username_here/$MYSQL_USER/g" /var/www/wordpress/wp-config.php
